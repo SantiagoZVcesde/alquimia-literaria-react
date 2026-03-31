@@ -1,18 +1,71 @@
-# React + Vite
+# Proyecto Integrador Frontend - Alquimia Literaria
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 📖 Descripción del Proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Este repositorio contiene el frontend de "Alquimia Literaria", una plataforma digital para la compra, venta y lectura de libros en línea. Corresponde al primer hito de desarrollo, enfocado en establecer una arquitectura escalable y un flujo de trabajo colaborativo.
 
-## React Compiler
+---
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## 🛠️ Versiones de Software
 
-Note: This will impact Vite dev & build performances.
+- **Node.js:** v18.0.0 o superior
+- **React:** v18.2.0
+- **Vite:** v4.0.0
+- **npm:** v9.0.0 o superior
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Comandos de Instalación y Ejecución
+
+Sigue estos pasos para ejecutar el proyecto localmente:
+
+1. Clonar el repositorio:
+   ```bash
+   git clone [URL_DEL_REPOSITORIO]
+   ```
+
+2. Acceder al directorio del proyecto:
+   ```bash
+   cd alquimia-literaria-front
+   ```
+
+3. Instalar las dependencias:
+   ```bash
+   npm install
+   ```
+
+4. Ejecutar el proyecto en modo desarrollo:
+   ```bash
+   npm run dev
+   ```
+5. Abrir el navegador en la dirección que indique la terminal (generalmente http://localhost:5173)
+
+---
+
+## Integrantes del Equipo
+
+| Nombre                  | Usuario GitHub     |
+|-------------------------|--------------------|
+| Santiago Zapata Villada | @SantiagoZVcesde   |
+| Santiago Sanchez Rojas  | @[piolin666satan]  |
+| [Nombre 3]              | @[usuario]         |
+| [Nombre 4]              | @[usuario]         |
+
+---
+
+## 📁 Estructura del Proyecto
+
+A continuación se detalla la organización de los directorios y archivos principales del frontend:
+
+```text
+src/
+├── assets/          # Recursos estáticos (imágenes, logos, estilos globales)
+├── components/      # Componentes UI reutilizables (Navbar, Footer)
+├── helpers/         # Funciones de utilidad (validaciones, formateo)
+├── pages/           # Vistas de alto nivel (Home, Login)
+├── services/        # Comunicación con backend (vacío por ahora)
+├── router/          # Configuración de navegación (vacío por ahora)
+├── App.jsx          # Orquestador principal
+└── main.jsx         # Punto de entrada de React
