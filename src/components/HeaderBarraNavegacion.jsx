@@ -14,7 +14,7 @@ const [search, setSearch] = useState("");
         
 
   return (
-    <nav className=" bg-(--color-primario) text-(--color-secundario) px-6 py-4 flex items-center justify-between">
+    <nav className=" bg-(--color-primario) text-(--color-secundario) px-6 py-4 flex items-center justify-between w-full">
       {/* Logo */}
        <Link to="/home" className="hover:text-cyan-800">
          <h1 className="text-xl font-bold">Alquimia.literaria</h1>
@@ -39,9 +39,10 @@ const [search, setSearch] = useState("");
       </form>
 
       {/* Links */}
-      <div className="flex gap-6">
-        <Link to="/Home" className="hover:text-cyan-400">inicio</Link>
+      <div className="flex flex-col gap-04 md:flex-row md:gap-6">
         <Link to="/Library" className="hover:text-cyan-400 ">Libreria</Link>
+        <Link to="/Login" className="hover:text-cyan-400 ">Iniciar seccion</Link>
+        <Link to="/Register" className="hover:text-cyan-400 ">Registrarse</Link>
       </div>
     </nav>
   );
