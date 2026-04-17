@@ -10,7 +10,7 @@ const [search, setSearch] = useState("");
     console.log("Buscar:", search);
     // aquí luego puedes filtrar libros o redirigir
   };
-
+          
         
 
   return (
@@ -40,8 +40,8 @@ const [search, setSearch] = useState("");
 
       {/* Links */}
       <div className="flex gap-6">
-        <Link to="/home" className="hover:text-cyan-400">inicio</Link>
-        <Link to="/library" className="hover:text-cyan-400 ">Libreria</Link>
+        <Link to="/Home" className="hover:text-cyan-400">inicio</Link>
+        <Link to="/Library" className="hover:text-cyan-400 ">Libreria</Link>
       </div>
     </nav>
   );
