@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { end_points } from "../services/api";
 import "../pages/PagesCss/Register.css";
+import { Link } from "react-router-dom"; // Importamos Link para la navegación
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -8,7 +9,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const characters = "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン".split("");
+  const characters = "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ마ミムメモヤユヨラリルレロワヲン".split("");
   const matrixContent = Array(200).fill(characters).flat().slice(0, 700);
 
   const handleRegister = (e) => {
@@ -38,8 +39,16 @@ const Register = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center bg-black py-10">
+    <div className="relative min-h-screen w-full flex items-center justify-center bg-black py-10 overflow-hidden">
       
+      {/* BOTÓN VOLVER AL INICIO */}
+      <Link 
+        to="/" 
+        className="absolute top-6 left-6 z-20 text-white/50 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold tracking-widest"
+      >
+        ← VOLVER AL INICIO
+      </Link>
+
       {/* FONDO ANIMADO */}
       <div className="matrix-bg">
         {matrixContent.map((char, index) => (
@@ -111,7 +120,7 @@ const Register = () => {
 
         <div className="mt-6 text-center text-sm">
           <span className="text-slate-400">¿Ya tienes cuenta? </span>
-          <a href="/login" className="text-blue-400 font-bold hover:underline">Inicia sesión</a>
+          <Link to="/login" className="text-blue-400 font-bold hover:underline">Inicia sesión</Link>
         </div>
       </div>
     </div>

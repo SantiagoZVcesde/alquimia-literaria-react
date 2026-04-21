@@ -29,7 +29,7 @@ function Footer() {
                 </div>
             </div>
             <div className="border-t border-gray-600 py-4 text-gray-300 text-center mt-6">
-                <p>© 2024 Josue y sus tres santiagos. Todos los derechos reservados.</p>
+                <p>© 2026 Josue y sus tres santiagos. Todos los derechos reservados.</p>
             </div>
         </footer>
     );

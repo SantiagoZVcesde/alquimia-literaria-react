@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { end_points } from "../services/api";
 import "../pages/PagesCss/Login.css"; 
 import { redirectAlert } from "../helpers/alerts";
+import { Link } from "react-router-dom"; // Solo añadimos esta importación
 
 const Login = () => {
   const [user, setUser] = useState("");
@@ -9,7 +10,7 @@ const Login = () => {
   const [remember, setRemember] = useState(false);
   const [users, setUsers] = useState([]);
 
-  const characters = "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン".split("");
+  const characters = "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ마미ムメモヤユヨラリルレロワヲン".split("");
   const matrixContent = Array(200).fill(characters).flat().slice(0, 700);
 
   function getUsers() {
@@ -29,29 +30,29 @@ const Login = () => {
 
   function signIn(e) {
     e.preventDefault();
-
-    console.log("Lo que escribiste:", { user, password });
-    console.log("Lista de usuarios en la API:", users);
-    
-    if (user === "" || password === "") return redirectAlert("Campos vacíos", "El campo Usuario y/o contraseña no pueden estar vacíos",
-       "/Login", "warning");
-    if (findUser()) return redirectAlert("Bienvenido a alquimia literaria", 
-      "Sera redireccionado a la libreria ", "/Library", "success");
-    if (findUser() == undefined) return redirectAlert("Credenciales incorrectas", "El usuario o la contraseña son incorrectos ",
-       "/Login", "error");
+    if (user === "" || password === "") return redirectAlert("Campos vacíos", "El campo Usuario y/o contraseña no pueden estar vacíos", "/Login", "warning");
+    if (findUser()) return redirectAlert("Bienvenido a alquimia literaria", "Sera redireccionado a la libreria ", "/Library", "success");
+    if (findUser() == undefined) return redirectAlert("Credenciales incorrectas", "El usuario o la contraseña son incorrectos ", "/Login", "error");
   }
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center bg-black">
       
-      {/* FONDO ANIMADO */}
+      {/* --- BOTÓN AÑADIDO --- */}
+      <Link 
+        to="/" 
+        className="absolute top-6 left-6 z-20 text-white/50 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold"
+      >
+        ← VOLVER AL INICIO
+      </Link>
+      {/* ---------------------- */}
+
       <div className="matrix-bg">
         {matrixContent.map((char, index) => (
           <span key={index}>{char}</span>
         ))}
       </div>
 
-      {/* FORMULARIO (Encima del fondo gracias al z-index y relative) */}
       <div className="relative z-10 w-full max-w-sm p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl mx-4">
         <div className="flex flex-col items-center mb-8">
           <h2 className="text-3xl font-bold text-white tracking-tight">Bienvenido</h2>
@@ -81,7 +82,6 @@ const Login = () => {
               <input type="checkbox" className="accent-blue-500" onChange={() => setRemember(!remember)} />
               <span>Recordarme</span>
             </label>
-            <a href="#" className="hover:text-white transition-colors">¿Olvidaste tu clave?</a>
           </div>
 
           <button
@@ -94,7 +94,7 @@ const Login = () => {
 
         <div className="mt-8 text-center text-sm">
           <span className="text-slate-400">¿No tienes cuenta? </span>
-          <a href="/Register" className="text-blue-400 font-bold hover:underline">Regístrate</a>
+          <Link to="/Register" className="text-blue-400 font-bold hover:underline">Regístrate</Link>
         </div>
       </div>
     </div>

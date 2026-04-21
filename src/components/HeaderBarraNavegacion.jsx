@@ -41,7 +41,7 @@ const [search, setSearch] = useState("");
       {/* Links */}
       <div className="flex flex-col gap-04 md:flex-row md:gap-6">
         <Link to="/Library" className="hover:text-cyan-400 ">Libreria</Link>
-        <Link to="/Login" className="hover:text-cyan-400 ">Iniciar seccion</Link>
+        <Link to="/Login" className="hover:text-cyan-400 ">Iniciar sección</Link>
         <Link to="/Register" className="hover:text-cyan-400 ">Registrarse</Link>
       </div>
     </nav>
