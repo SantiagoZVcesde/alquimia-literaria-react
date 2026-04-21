@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { end_points } from "../services/api";
 import "../pages/PagesCss/Login.css"; 
+import { redirectAlert } from "../helpers/alerts";
 
 const Login = () => {
   const [user, setUser] = useState("");
@@ -28,9 +29,16 @@ const Login = () => {
 
   function signIn(e) {
     e.preventDefault();
-    if (user === "" || password === "") return alert("Login or password is empty");
-    if (findUser()) return alert("Welcome admin");
-    alert("Login or password is incorrect");
+
+    console.log("Lo que escribiste:", { user, password });
+    console.log("Lista de usuarios en la API:", users);
+    
+    if (user === "" || password === "") return redirectAlert("Campos vacíos", "El campo Usuario y/o contraseña no pueden estar vacíos",
+       "/Login", "warning");
+    if (findUser()) return redirectAlert("Bienvenido a alquimia literaria", 
+      "Sera redireccionado a la libreria ", "/Library", "success");
+    if (findUser() == undefined) return redirectAlert("Credenciales incorrectas", "El usuario o la contraseña son incorrectos ",
+       "/Login", "error");
   }
 
   return (
