@@ -1,15 +1,13 @@
-import { useState } from 'react'
-
-
+import { Outlet } from 'react-router-dom'
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
-
 
 function App() {
-
-
-  
+  return (
+    <>
+      {/* El Outlet es donde se renderizarán las páginas (Home, Login, etc.) */}
+      <Outlet />
+    </>
+  )
 }
 
 export default App

@@ -44,14 +44,12 @@ const Login = () => {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center bg-black">
       
-      {/* FONDO ANIMADO */}
       <div className="matrix-bg">
         {matrixContent.map((char, index) => (
           <span key={index}>{char}</span>
         ))}
       </div>
 
-      {/* FORMULARIO (Encima del fondo gracias al z-index y relative) */}
       <div className="relative z-10 w-full max-w-sm p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl mx-4">
         <div className="flex flex-col items-center mb-8">
           <h2 className="text-3xl font-bold text-white tracking-tight">Bienvenido</h2>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { end_points } from "../services/api";
 import "../pages/PagesCss/Register.css";
+import { redirectAlert } from "../helpers/alerts";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -8,89 +9,121 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const characters = "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン".split("");
+  const characters =
+    "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン".split(
+      "",
+    );
   const matrixContent = Array(200).fill(characters).flat().slice(0, 700);
 
   const handleRegister = (e) => {
     e.preventDefault();
-    
+
+    // 1. Caso: Campos vacíos
+    if ([username, fullName, email, password].includes("")) {
+      return redirectAlert(
+        "Campos incompletos",
+        "Por favor, llena todos los campos para continuar",
+        "/Register",
+        "warning",
+      );
+    }
+
     const newUser = {
       username: username,
       fullName: fullName,
       email: email,
-      password: password
+      password: password,
     };
 
-    if ([username, fullName, email, password].includes("")) {
-      return alert("Por favor, llena todos los campos");
-    }
-
     console.log("Enviando datos:", newUser);
-    
+
     fetch(end_points.users, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newUser)
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newUser),
     })
-    .then(res => res.json())
-    .then(data => alert("¡Registro exitoso!"))
-    .catch(err => console.log(err));
+      .then((res) => {
+        if (!res.ok) throw new Error("Error en el registro");
+        return res.json();
+      })
+      .then(() => {
+        redirectAlert(
+          "¡Registro exitoso!",
+          "Tu cuenta ha sido creada. Ahora puedes iniciar sesión.",
+          "/Login",
+          "success",
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+        redirectAlert(
+          "Error de conexión",
+          "No se pudo completar el registro. Intenta más tarde.",
+          "/Register",
+          "error",
+        );
+      });
   };
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center bg-black py-10">
-      
-      {/* FONDO ANIMADO */}
       <div className="matrix-bg">
         {matrixContent.map((char, index) => (
           <span key={index}>{char}</span>
         ))}
       </div>
 
-      {/* FORMULARIO DE REGISTRO */}
       <div className="relative z-10 w-full max-w-md p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl mx-4">
         <div className="flex flex-col items-center mb-6">
-          <h2 className="text-3xl font-bold text-white tracking-tight">Crea tu cuenta</h2>
-          <p className="text-blue-200/60 text-sm">Únete a la Alquimia Literaria</p>
+          <h2 className="text-3xl font-bold text-white tracking-tight">
+            Crea tu cuenta
+          </h2>
+          <p className="text-blue-200/60 text-sm">
+            Únete a la Alquimia Literaria
+          </p>
         </div>
 
         <form className="space-y-4" onSubmit={handleRegister}>
-          {/* Campo Nombre Completo */}
           <div>
-            <label className="text-blue-200/80 text-xs ml-1 mb-1 block">Nombre Completo</label>
+            <label className="text-blue-200/80 text-xs ml-1 mb-1 block">
+              Nombre Completo
+            </label>
             <input
               className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder:text-slate-500 outline-none focus:border-blue-500 transition-all"
-              placeholder="Ej: Juan Torres"
+              placeholder="Ej: Santiago Zapata Villada"
               type="text"
               onChange={(e) => setFullName(e.target.value)}
             />
           </div>
 
-          {/* Campo Usuario */}
           <div>
-            <label className="text-blue-200/80 text-xs ml-1 mb-1 block">Nombre de Usuario</label>
+            <label className="text-blue-200/80 text-xs ml-1 mb-1 block">
+              Nombre de Usuario
+            </label>
             <input
               className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder:text-slate-500 outline-none focus:border-blue-500 transition-all"
-              placeholder="Ej: jtorres"
+              placeholder="Ej: Santiago_2006"
               type="text"
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
-          {/* Campo Email */}
           <div>
-            <label className="text-blue-200/80 text-xs ml-1 mb-1 block">Correo Electrónico</label>
+            <label className="text-blue-200/80 text-xs ml-1 mb-1 block">
+              Correo Electrónico
+            </label>
             <input
               className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder:text-slate-500 outline-none focus:border-blue-500 transition-all"
-              placeholder="juan@ejemplo.com"
+              placeholder="Zapatavillasantiago@gmail.com"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
-          {/* Campo Contraseña */}
           <div>
-            <label className="text-blue-200/80 text-xs ml-1 mb-1 block">Contraseña</label>
+            <label className="text-blue-200/80 text-xs ml-1 mb-1 block">
+              Contraseña
+            </label>
             <input
               className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder:text-slate-500 outline-none focus:border-blue-500 transition-all"
               placeholder="••••••••"
@@ -111,7 +144,9 @@ const Register = () => {
 
         <div className="mt-6 text-center text-sm">
           <span className="text-slate-400">¿Ya tienes cuenta? </span>
-          <a href="/login" className="text-blue-400 font-bold hover:underline">Inicia sesión</a>
+          <a href="/Login" className="text-blue-400 font-bold hover:underline">
+            Inicia sesión
+          </a>
         </div>
       </div>
     </div>
