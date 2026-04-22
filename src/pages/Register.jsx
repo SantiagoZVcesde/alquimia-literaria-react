@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { end_points } from "../services/api";
 import "../pages/PagesCss/Register.css";
-import { Link } from "react-router-dom"; // Importamos Link para la navegación
+import { Link } from "react-router-dom"; 
+import { redirectAlert } from "../helpers/alerts";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -23,7 +24,7 @@ const Register = () => {
     };
 
     if ([username, fullName, email, password].includes("")) {
-      return alert("Por favor, llena todos los campos");
+      return redirectAlert("Campos vacíos", "Por favor, llena todos los campos", "/Register", "warning");
     }
 
     console.log("Enviando datos:", newUser);
@@ -34,7 +35,7 @@ const Register = () => {
       body: JSON.stringify(newUser)
     })
     .then(res => res.json())
-    .then(data => alert("¡Registro exitoso!"))
+    .then(() => redirectAlert("¡Registro exitoso!", "Tu cuenta ha sido creada correctamente", "/Login", "success"))
     .catch(err => console.log(err));
   };
 
