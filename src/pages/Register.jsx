@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { end_points } from "../services/api";
 import "../pages/PagesCss/Register.css";
+import { Link } from "react-router-dom"; 
 import { redirectAlert } from "../helpers/alerts";
 
 const Register = () => {
@@ -9,10 +10,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const characters =
-    "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン".split(
-      "",
-    );
+  const characters = "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ마ミムメモヤユヨラリルレロワヲン".split("");
   const matrixContent = Array(200).fill(characters).flat().slice(0, 700);
 
   const handleRegister = (e) => {
@@ -35,38 +33,34 @@ const Register = () => {
       password: password,
     };
 
+    if ([username, fullName, email, password].includes("")) {
+      return redirectAlert("Campos vacíos", "Por favor, llena todos los campos", "/Register", "warning");
+    }
+
     console.log("Enviando datos:", newUser);
 
     fetch(end_points.users, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newUser),
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newUser)
     })
-      .then((res) => {
-        if (!res.ok) throw new Error("Error en el registro");
-        return res.json();
-      })
-      .then(() => {
-        redirectAlert(
-          "¡Registro exitoso!",
-          "Tu cuenta ha sido creada. Ahora puedes iniciar sesión.",
-          "/Login",
-          "success",
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-        redirectAlert(
-          "Error de conexión",
-          "No se pudo completar el registro. Intenta más tarde.",
-          "/Register",
-          "error",
-        );
-      });
+    .then(res => res.json())
+    .then(data => alert("¡Registro exitoso!"))
+    .catch(err => console.log(err));
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center bg-black py-10">
+    <div className="relative min-h-screen w-full flex items-center justify-center bg-black py-10 overflow-hidden">
+      
+      {/* BOTÓN VOLVER AL INICIO */}
+      <Link 
+        to="/" 
+        className="absolute top-6 left-6 z-20 text-white/50 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold tracking-widest"
+      >
+        ← VOLVER AL INICIO
+      </Link>
+
+      {/* FONDO ANIMADO */}
       <div className="matrix-bg">
         {matrixContent.map((char, index) => (
           <span key={index}>{char}</span>
@@ -144,9 +138,7 @@ const Register = () => {
 
         <div className="mt-6 text-center text-sm">
           <span className="text-slate-400">¿Ya tienes cuenta? </span>
-          <a href="/Login" className="text-blue-400 font-bold hover:underline">
-            Inicia sesión
-          </a>
+          <a href="/login" className="text-blue-400 font-bold hover:underline">Inicia sesión</a>
         </div>
       </div>
     </div>

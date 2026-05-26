@@ -1,6 +1,14 @@
-const URL_BASE = "http://app-gestion-candidatos-am-api.onrender.com/"
-export let end_points = {
-    users: `${URL_BASE}users`,
-    offers: `${URL_BASE}offers`,
-    candidates: `${URL_BASE}candidates`
-}
+export const API_CONFIG = {
+    BASE_URL: 'https://fakestoreapi.com',
+    ENDPOINTS: {
+        PRODUCTS: '/products',
+        CART: '/cart',
+        LOGIN: '/auth/login',
+        USERS: '/users'
+    }
+};
+
+// AÑADE ESTO AL FINAL para que Login.jsx no se rompa:
+export const end_points = {
+    users: `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.USERS}`
+};
