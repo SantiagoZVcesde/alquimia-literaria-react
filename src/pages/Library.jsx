@@ -17,8 +17,7 @@ export const Library = () => {
     return guardado ? JSON.parse(guardado) : [];
   });
 
-  const characters = "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ마미ムメモヤユヨラリルレロワヲン".split("");
-  const matrixContent = Array(200).fill(characters).flat().slice(0, 700);
+
 
   useEffect(() => {
     fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PRODUCTS}`)
@@ -46,13 +45,7 @@ export const Library = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-black overflow-x-hidden">
-      {/* FONDO MATRIX */}
-      <div className="matrix-bg">
-        {matrixContent.map((char, index) => (
-          <span key={index}>{char}</span>
-        ))}
-      </div>
+    <div className="relative min-h-screen w-full bg-gradient-to-b from-[#1a0f0a] to-[#0A1045] overflow-x-hidden">
 
       {/* CONTENIDO PRINCIPAL */}
       <div className="relative z-10 flex flex-col min-h-screen bg-transparent">

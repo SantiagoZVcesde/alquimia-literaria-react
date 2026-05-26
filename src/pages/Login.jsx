@@ -10,8 +10,7 @@ const Login = () => {
   const [remember, setRemember] = useState(false);
   const [users, setUsers] = useState([]);
 
-  const characters = "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ마미ムメモヤユヨラリルレロワヲン".split("");
-  const matrixContent = Array(200).fill(characters).flat().slice(0, 700);
+
 
   function getUsers() {
     fetch(end_points.users)
@@ -62,7 +61,7 @@ const Login = () => {
   }
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center bg-black overflow-hidden">
+    <div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#1a0f0a] to-[#0A1045] overflow-hidden">
       
       {/* --- BOTÓN VOLVER AL INICIO (HU05) --- */}
       <Link 
@@ -71,12 +70,6 @@ const Login = () => {
       >
         ← VOLVER AL INICIO
       </Link>
-
-      <div className="matrix-bg">
-        {matrixContent.map((char, index) => (
-          <span key={index}>{char}</span>
-        ))}
-      </div>
 
       <div className="relative z-10 w-full max-w-sm p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl mx-4">
         <div className="flex flex-col items-center mb-8">

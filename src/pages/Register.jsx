@@ -10,8 +10,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const characters = "アアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ마ミムメモヤユヨラリルレロワヲン".split("");
-  const matrixContent = Array(200).fill(characters).flat().slice(0, 700);
+
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -40,7 +39,7 @@ const Register = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center bg-black py-10 overflow-hidden">
+    <div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#1a0f0a] to-[#0A1045] py-10 overflow-hidden">
       
       {/* BOTÓN VOLVER AL INICIO */}
       <Link 
@@ -49,13 +48,6 @@ const Register = () => {
       >
         ← VOLVER AL INICIO
       </Link>
-
-      {/* FONDO ANIMADO */}
-      <div className="matrix-bg">
-        {matrixContent.map((char, index) => (
-          <span key={index}>{char}</span>
-        ))}
-      </div>
 
       {/* FORMULARIO DE REGISTRO */}
       <div className="relative z-10 w-full max-w-md p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl mx-4">
