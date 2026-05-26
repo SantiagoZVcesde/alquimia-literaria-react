@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
-:root {
-        --color-primario: #34495e;
-        --color-secundario: #e5d7b9;
-        --color-fondo: #34495e;
-        --color-gris: #c9a646;
-        }
+@theme {
+  /* Animación para el Logomarquee */
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Tus colores reales extraídos de la paleta */
+  --color-navy: #0A1045;
+  --color-cyan: #00C2D1;
+  --color-lemon: #F9E900;
+  --color-sandy: #F6AF65;
+  --color-pink: #ED33B9;
+}

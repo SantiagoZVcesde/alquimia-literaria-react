@@ -95,41 +95,41 @@ const Hero = () => {
         } bg-gradient-to-b from-[#1a0f0a] to-[#0A1045]`}
       >
         
-{/* Contenedor del Título y Tarjetas */}
-<div className="py-24 px-6 max-w-7xl mx-auto overflow-hidden"> 
-  
-  <div className="mb-70"> {/* Reduje un poco el mb-40 para que no quede un hueco gigante en PC */}
-    <ScrollFloat
-      animationDuration={1}
-      ease='back.inOut(2)'
-      scrollStart='center bottom+=50%'
-      scrollEnd='bottom bottom-=40%'
-      stagger={0.03}
-    >
-      Para Todos los Gustos.
-    </ScrollFloat>
-  </div>
-    
-  {/* Fila de Tarjetas INDESTRUCTIBLE (Solo Flex, sin Grid) */}
-  <div className="flex flex-row gap-8 overflow-x-auto pb-12 pt-4 px-2 snap-x snap-mandatory scrollbar-thin">
-    <Card category="Terror." cover="/img/libros/Dracula.jpg" /> 
-    <Card category="Ficción" cover="/img/libros/lacamarasecreta.jpg" />
-    <Card category="Romance" cover="/img/libros/orgulloyprejuicio.jpg" />
-    <Card category="Fantasia" cover="/img/libros/lapiedrafilosofal.jpg" />
-    <Card category="Ciencia Ficción" cover="/img/libros/1948.jpg" />
-    <Card category="clasicos" cover="/img/libros/donquijote.jpg" />
-    <Card category="Comic" cover="/img/libros/araña.jpg" />
-    <Card category="Distopia" cover="/img/libros/juegosdelhambre.jpg" />
-    <Card category="Gotico" cover="/img/libros/sharpteeth.jpg" />
-    <Card category="Terror" cover="/img/libros/enlamontaña.jpg" />
-    <Card category="clasico" cover="/img/libros/soledad.jpg" />
-    <Card category="Filosofia" cover="/img/libros/elprincipito.jpg" />
-    <Card category=" Fisica" cover="/img/libros/caos.jpg" />
-  </div>
-</div>
+        {/* Contenedor del Título y Tarjetas */}
+        <div className="py-24 px-6 max-w-7xl mx-auto overflow-hidden"> 
+          
+          <div className="mb-70"> {/* Reduje un poco el mb-40 para que no quede un hueco gigante en PC */}
+            <ScrollFloat
+              animationDuration={1}
+              ease='back.inOut(2)'
+              scrollStart='center bottom+=50%'
+              scrollEnd='bottom bottom-=40%'
+              stagger={0.03}
+            >
+              Para Todos los Gustos.
+            </ScrollFloat>
+          </div>
+            
+          {/* Fila de Tarjetas INDESTRUCTIBLE (Solo Flex, sin Grid) */}
+          <div className="flex flex-row gap-8 overflow-x-auto pb-12 pt-4 px-2 snap-x snap-mandatory scrollbar-thin">
+            <Card category="Terror." cover="/img/libros/Dracula.jpg" /> 
+            <Card category="Ficción" cover="/img/libros/lacamarasecreta.jpg" />
+            <Card category="Romance" cover="/img/libros/orgulloyprejuicio.jpg" />
+            <Card category="Fantasia" cover="/img/libros/lapiedrafilosofal.jpg" />
+            <Card category="Ciencia Ficción" cover="/img/libros/1948.jpg" />
+            <Card category="clasicos" cover="/img/libros/donquijote.jpg" />
+            <Card category="Comic" cover="/img/libros/araña.jpg" />
+            <Card category="Distopia" cover="/img/libros/juegosdelhambre.jpg" />
+            <Card category="Gotico" cover="/img/libros/sharpteeth.jpg" />
+            <Card category="Terror" cover="/img/libros/enlamontaña.jpg" />
+            <Card category="clasico" cover="/img/libros/soledad.jpg" />
+            <Card category="Filosofia" cover="/img/libros/elprincipito.jpg" />
+            <Card category=" Fisica" cover="/img/libros/caos.jpg" />
+          </div>
+        </div>
         
-        <div>
-                    <div className="mb-40"> {/* Espacio extra debajo del título */}
+        <div className="py-24 px-6 max-w-7xl mx-auto overflow-hidden">
+              <div className="mb-70"> {/* Espacio extra debajo del título */}
             <ScrollFloat
               animationDuration={1}
               ease='back.inOut(2)'
@@ -140,7 +140,7 @@ const Hero = () => {
             Autores destacados
             </ScrollFloat>
           </div>
-          <div className="flex gap-8 overflow-x-auto pb-12 pt-4 px-2 snap-x snap-mandatory scrollbar-thin md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-x-visible">
+          <div className="flex flex-row gap-8 overflow-x-auto pb-12 pt-4 px-2 snap-x snap-mandatory scrollbar-thin">
             <Autor nombre="Guillermo" cover="/img/libros/migueldecervantes.jpg" descripcion="Maestro del terror ." /> 
             <Autor nombre="El Yeti" cover="/img/libros/paulacoelo.jpg" descripcion="Criatura de la nieve." />
             <Autor nombre="Caratoro" cover="/img/libros/stanlee.jpg" descripcion="Misterio y mitología." />
