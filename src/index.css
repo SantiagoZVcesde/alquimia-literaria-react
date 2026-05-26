@@ -16,3 +16,26 @@
   --color-sandy: #F6AF65;
   --color-pink: #ED33B9;
 }
+
+/* La cortina real de tu imagen adaptada a tus colores */
+.bg-cortina-3d {
+  width: 100%;
+  /* --s define el ancho de cada pestaña del acordeón */
+  --s: 90px; 
+  
+  /* Mapeamos los colores: caras del acordeón en tonos café para conectar con lo de arriba */
+  --c-half-left: #1a0f0a;
+  --c-half-right: #2d1b12; /* Un café un poco más claro para el efecto de luz 3D */
+  
+  /* La base de abajo recibe tu color azul Deep Navy */
+  --c-bottom: #0A1045;
+
+  background: conic-gradient(
+    var(--c-half-left) 0deg,
+    var(--c-half-left) 120deg,
+    var(--c-bottom) 120deg,
+    var(--c-bottom) 240deg,
+    var(--c-half-right) 240deg
+  );
+  background-size: var(--s);
+}

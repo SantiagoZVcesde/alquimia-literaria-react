@@ -15,7 +15,7 @@ function Home() {
 
       <HeaderBarraNavegacion/>
       <Hero/>
-      <Logomarquee/>
+      <Footer/>
       
 </>
   )
