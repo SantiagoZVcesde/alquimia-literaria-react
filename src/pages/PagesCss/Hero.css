@@ -1,0 +1,45 @@
+.hero-container {
+  position: relative;
+  height: 200vh; /* Doble de altura para permitir scroll */
+  background-color: #1a1a1a;
+}
+
+.media-wrapper {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.base-media, .overlay-media {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta la imagen/video al contenedor */
+}
+
+.overlay-media {
+  transition: opacity 0.1s ease-out;
+  z-index: 2;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  color: white;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  border: rgb(ED33B9) 2px solid;
+}
+
+.spacer {
+  height: 100vh;
+}
+
