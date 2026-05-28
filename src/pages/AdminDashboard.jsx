@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { redirectAlert } from "../helpers/alerts";
-
-// IMPORTACIÓN DE TUS SUBCOMPONENTES RECIÉN CREADOS
-import AdminStats from "../components/Admin/AdminStats";
-import BookManager from "../components/Admin/BookManager";
+import AdminStats from "../components/AdminStats";
+import BookManager from "../components/BookManager";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("stats"); // Controla qué pestaña renderizar

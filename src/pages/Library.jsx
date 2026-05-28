@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Cart } from "../pages/Cart.jsx";
-import { end_points } from "../services/api"; // Usamos tu archivo centralizado de rutas de API
+import { end_points } from "../services/api"; 
 import "../pages/PagesCss/Library.css";
 
 // IMPORTA TUS COMPONENTES
-import Navbar from "../components/HeaderBarraNavegacion.jsx"; 
+import HeaderBarraNavegacion from "../components/HeaderBarraNavegacion.jsx"; 
 import Footer from "../components/Footer"; 
 
 export const Library = () => {
@@ -93,8 +93,8 @@ export const Library = () => {
       {/* CONTENIDO PRINCIPAL */}
       <div className="relative z-10 flex flex-col min-h-screen bg-transparent">
         
-        {/* NAVBAR SUPERIOR */}
-        <Navbar />
+        {/* NAVBAR SUPERIOR INTERACTIVO */}
+        <HeaderBarraNavegacion isLoggedIn={!!localStorage.getItem("user_session")} />
 
         {/* BOTÓN FLOTANTE DEL CARRITO */}
         <button
@@ -118,7 +118,7 @@ export const Library = () => {
                 {/* Contenedor de la Imagen del Libro */}
                 <div className="bg-white p-4 h-64 flex items-center justify-center">
                   <img
-                    src={libro.imagenUrl || "https://via.placeholder.com/150?text=Sin+Portada"} // Fallback por si no tiene URL de imagen
+                    src={libro.imagenUrl || "https://via.placeholder.com/150?text=Sin+Portada"} 
                     alt={libro.titulo}
                     className="max-h-full object-contain"
                   />
