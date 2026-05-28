@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { end_points } from "../../services/api";
+import { end_points } from "../services/api";
 
 const AdminStats = () => {
   const [totalBooks, setTotalBooks] = useState(0);

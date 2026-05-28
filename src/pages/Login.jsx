@@ -102,7 +102,6 @@ const Login = () => {
 
         <form className="space-y-5" onSubmit={signIn}>
           <div>
-            {/* Cambiado a tipo email y placeholder correspondiente */}
             <input
               className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 outline-none focus:border-blue-500 transition-all"
               placeholder="Correo Electrónico"
@@ -121,8 +120,9 @@ const Login = () => {
             />
           </div>
 
+          {/* ESTA FILA FUE MODIFICADA PARA AGREGAR EL ENLACE */}
           <div className="flex items-center justify-between text-xs text-blue-200/80">
-            <label className="flex items-center gap-2 cursor-pointer">
+            <label className="flex items-center gap-2 cursor-pointer text-slate-300 hover:text-white select-none">
               <input 
                 type="checkbox" 
                 className="accent-blue-500" 
@@ -131,6 +131,14 @@ const Login = () => {
               />
               <span>Recordarme</span>
             </label>
+            
+            {/* Enlace añadido apuntando exactamente a tu ruta mapeada */}
+            <Link 
+              to="/forgot-password" 
+              className="text-blue-400 hover:text-blue-300 hover:underline transition-colors font-medium"
+            >
+              ¿Olvidaste tu contraseña?
+            </Link>
           </div>
 
           <button

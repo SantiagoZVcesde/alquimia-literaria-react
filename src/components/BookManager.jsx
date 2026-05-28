@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { end_points } from "../../services/api";
+import { end_points } from "../services/api";
 import Swal from "sweetalert2";
 
 const BookManager = () => {
