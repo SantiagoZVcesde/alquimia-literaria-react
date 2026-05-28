@@ -2,68 +2,91 @@ import { useEffect, useState } from "react";
 import { end_points } from "../services/api";
 import "../pages/PagesCss/Login.css"; 
 import { redirectAlert } from "../helpers/alerts";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 
 const Login = () => {
-  const [user, setUser] = useState("");
+  // Cambiamos 'user' por 'email' para que coincida con la base de datos real
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [users, setUsers] = useState([]);
+  
+  const navigate = useNavigate();
 
+  // Credenciales administrativas para saltar el Spring Security básico
+  const credentialsBase64 = btoa("admin:admin123");
 
-
-  function getUsers() {
-    fetch(end_points.users)
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) => console.log("Error cargando usuarios:", error));
-  }
-
+  // 1. USEEFFECT CORREGIDO (Evita fallos de ESLint metiendo la función adentro)
   useEffect(() => {
-    getUsers();
-  }, []);
+    // Si ya existe la sesión en el navegador, lo despachamos directo para la librería
+    const session = localStorage.getItem("user_session");
+    if (session) {
+      navigate("/Library");
+      return;
+    }
 
-  function findUser() {
-    return users.find((item) => user === item.username && password === item.password);
-  }
+    const fetchUsers = () => {
+      fetch(end_points.users, {
+        method: "GET",
+        headers: {
+          "Authorization": `Basic ${credentialsBase64}`,
+          "Content-Type": "application/json"
+        }
+      })
+        .then((response) => response.json())
+        .then((data) => setUsers(data))
+        .catch((error) => console.log("Error cargando usuarios:", error));
+    };
 
-  function signIn(e) {
+    fetchUsers();
+  }, [navigate, credentialsBase64]);
+
+  // 2. BUSCAR USUARIO POR EMAIL Y PASSWORD REALES
+  const findUser = () => {
+    return users.find((item) => email === item.email && password === item.password);
+  };
+
+  // 3. PROCESAR INICIO DE SESIÓN
+  const signIn = (e) => {
     e.preventDefault();
 
-    if (user === "" || password === "") {
-      return redirectAlert("Campos vacíos", "El usuario y contraseña son obligatorios", "/Login", "warning");
+    if (email === "" || password === "") {
+      return redirectAlert("Campos vacíos", "El correo y la contraseña son obligatorios", "/Login", "warning");
     }
 
     const authenticatedUser = findUser();
 
     if (authenticatedUser) {
-
+      // Guardamos la sesión con los datos que sí devuelve tu backend (nombre, apellido, rol, email)
       localStorage.setItem("user_session", JSON.stringify({
-        username: authenticatedUser.username,
-        fullName: authenticatedUser.fullName,
+        id: authenticatedUser.id,
+        email: authenticatedUser.email,
+        nombre: authenticatedUser.nombre,
+        apellido: authenticatedUser.apellido,
+        rol: authenticatedUser.rol,
         isLoggedIn: true
       }));
 
       return redirectAlert(
         "Bienvenido a Alquimia Literaria", 
-        `Hola ${authenticatedUser.username}, serás redireccionado`, 
+        `Hola ${authenticatedUser.nombre}, serás redireccionado`, 
         "/Library", 
         "success"
       );
     } else {
       return redirectAlert(
         "Credenciales incorrectas", 
-        "El usuario o la contraseña no coinciden", 
+        "El correo electrónico o la contraseña no coinciden con ninguna cuenta activa", 
         "/Login", 
         "error"
       );
     }
-  }
+  };
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#1a0f0a] to-[#0A1045] overflow-hidden">
       
-      {/* --- BOTÓN VOLVER AL INICIO (HU05) --- */}
+      {/* BOTÓN VOLVER AL INICIO */}
       <Link 
         to="/" 
         className="absolute top-6 left-6 z-20 text-white/50 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold"
@@ -79,12 +102,13 @@ const Login = () => {
 
         <form className="space-y-5" onSubmit={signIn}>
           <div>
+            {/* Cambiado a tipo email y placeholder correspondiente */}
             <input
               className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 outline-none focus:border-blue-500 transition-all"
-              placeholder="Usuario"
-              type="text"
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              placeholder="Correo Electrónico"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
