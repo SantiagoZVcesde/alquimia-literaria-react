@@ -1,0 +1,100 @@
+/* Variables de fallback si no usas CSS variables globales */
+:root {
+  --color-background: #ffffff; /* Cambia al fondo de tu app (ej. #000000 para modo oscuro) */
+  --color-foreground: #111827; 
+}
+
+/* Contenedor principal con overflow oculto */
+.relative-marquee-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 1.5rem 0;
+}
+
+/* Sombreado difuminado izquierdo con gradiente */
+.relative-marquee-container::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 5rem; /* w-20 */
+  height: 100%;
+  background: linear-gradient(to right, var(--color-background), transparent);
+}
+
+/* Sombreado difuminado derecho con gradiente */
+.relative-marquee-container::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  width: 5rem; /* w-20 */
+  height: 100%;
+  background: linear-gradient(to left, var(--color-background), transparent);
+}
+
+/* Envoltura del Marquee que junta los tracks */
+.marquee-wrapper {
+  display: flex;
+  width: max-content;
+}
+
+/* El track animado que contiene los logos individuales */
+.marquee-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  animation: marquee-scroll 25s linear infinite;
+  padding-right: 2rem; /* Espaciado entre tracks para evitar saltos */
+}
+
+/* Estilos individuales para los contenedores de los SVGs */
+.marquee-item {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 10rem; /* w-40 por defecto */
+  height: 3rem; /* h-12 */
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Manejo del color del SVG (hereda el texto actual) */
+.marquee-item svg {
+  width: 5rem; /* w-20 */
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Responsivo para pantallas medianas (md: en Tailwind) */
+@media (min-width: 768px) {
+  .marquee-item {
+    width: 16rem; /* md:w-64 */
+  }
+  .marquee-item svg {
+    width: 7rem; /* md:w-28 */
+  }
+}
+
+/* Animación CSS pura para el movimiento infinito */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Opcional: Pausar animación al pasar el cursor */
+.relative-marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}

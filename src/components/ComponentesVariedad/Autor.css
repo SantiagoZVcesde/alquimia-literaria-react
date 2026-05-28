@@ -1,0 +1,110 @@
+/* ==========================================
+   TARJETA CON EFECTO REVELADO DE UIVERSE
+   ========================================== */
+
+.card {
+  position: relative;
+  /* Ancho y alto fijos SIEMPRE, tanto en móvil como en PC */
+  width: 260px;
+  min-width: 260px;
+  height: 360px;
+  
+  /* CRUCIAL: Evita que Flexbox las encoja para intentar meterlas a la fuerza */
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  
+  /* Fondo base oscuro de tu app */
+  background: linear-gradient(-45deg, #3b0764 0%, #0f172a 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  
+  /* Transición suave característica del diseño original */
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+/* Al hacer Hover la tarjeta entera rota -3 grados y escala un poco */
+.card:hover {
+  transform: rotate(-3deg) scale(1.03);
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 15px 30px rgba(168, 85, 247, 0.1);
+}
+
+/* La imagen del autor */
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+/* Cuando se hace hover, la imagen rota y se encoge (desaparece con estilo) */
+.card:hover .card__image {
+  transform: rotate(-45deg) scale(0);
+  opacity: 0;
+}
+
+
+/* ==========================================
+   CONTENIDO INTERNO (EL REVELADO)
+   ========================================== */
+
+.card__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Inicia rotado a -45 grados y centrado */
+  transform: translate(-50%, -50%) rotate(-45deg);
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+  
+  /* Modo oscuro elegante tipo cristal */
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 27, 75, 0.98));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  opacity: 0;
+  pointer-events: none; /* Evita interferencias cuando está oculto */
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+/* Al hacer hover, el texto vuelve a 0 grados y se hace visible */
+.card:hover .card__content {
+  transform: translate(-50%, -50%) rotate(0deg);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* ==========================================
+   TEXTOS
+   ========================================== */
+
+.card__title {
+  margin: 0;
+  font-size: 22px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(to r, #c084fc, #e9d5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card__description {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: #94a3b8; /* slate-400 */
+  line-height: 1.5;
+}
