@@ -1,0 +1,66 @@
+.slider-tipografico {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6rem 1.5rem;
+
+  background: linear-gradient(
+    to bottom,
+    #0a1045,
+    #050826
+  );
+
+  overflow: hidden;
+}
+
+.slider-contenido {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.slider-etiqueta {
+  display: block;
+
+  margin-bottom: 2rem;
+
+  color: #ed33b9;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.slider-texto {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+
+  color: rgba(255,255,255,.92);
+
+  line-height: 1.35;
+
+  font-size: clamp(2rem, 4vw, 5rem);
+
+  margin: 0;
+}
+
+.word {
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+.slider-autor {
+  margin-top: 2rem;
+
+  color: #00c2d1;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
