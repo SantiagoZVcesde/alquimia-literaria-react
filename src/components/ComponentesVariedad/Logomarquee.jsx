@@ -8,6 +8,9 @@ const LOGOS = [
   { id: 4, name: 'Preline', url: '/img/logos/preline.png' },
   { id: 5, name: 'prisma', url: '/img/logos/prisma.png' },
   { id: 6, name: 'vite', url: '/img/logos/vite.png' },
+  { id: 7, name: 'react', url: '/img/logos/react.png' },
+  { id: 8, name: 'tailwind', url: '/img/logos/talwind.png' },
+  { id: 9, name: 'uiverse', url: '/img/logos/uiverse.png' },
 ];
 
 export default function Logomarquee() {

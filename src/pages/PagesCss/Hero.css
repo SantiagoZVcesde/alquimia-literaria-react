@@ -43,3 +43,57 @@
   height: 100vh;
 }
 
+/* ==========================================================================
+   Hero.css - ESTILOS EXCLUSIVOS DE LA PÁGINA PRINCIPAL
+   ========================================================================== */
+
+/* 1. ANIMACIÓN Y COLORES PROPIOS DEL LOGOMARQUEE (Si no los tienes en index.css) */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 2. LA CORTINA 3D CON EL OVERLAY CAFÉ INTEGRADO */
+.bg-cortina-3d {
+  width: 100%;
+  --s: 90px; /* Ancho de cada pestaña del acordeón */
+
+  /* Mapeamos tus colores reales */
+  --c-half-left: #1a0f0a;
+  --c-half-right: #2d1b12; 
+  --c-bottom: #0A1045;
+
+  /* Capa superior: Gradiente café difuminado | Capa inferior: Patrón 3D */
+  background: 
+    linear-gradient(to bottom, #1a0f0a 0%, rgba(26, 15, 10, 0.4) 40%, transparent 100%),
+    conic-gradient(
+      var(--c-half-left) 0deg,
+      var(--c-half-left) 120deg,
+      var(--c-bottom) 120deg,
+      var(--c-bottom) 240deg,
+      var(--c-half-right) 240deg
+    );
+
+  background-size: 100% 100%, var(--s);
+}
+
+/* 3. OCULTAR LAS BARRAS DE SCROLL EN LOS CARRUSELES DE CATEGORÍAS Y AUTORES */
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Safari y Chrome */
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* 4. ANIMACIÓN FLOTANTE 3D PARA EL LIBRO DE LA SEMANA */
+@keyframes floatBook {
+  0% { transform: translateY(0px) rotateY(-5deg); }
+  50% { transform: translateY(-12px) rotateY(2deg); }
+  100% { transform: translateY(0px) rotateY(-5deg); }
+}
+
+.animate-float-book {
+  perspective: 1000px;
+  animation: floatBook 6s ease-in-out infinite;
+}
