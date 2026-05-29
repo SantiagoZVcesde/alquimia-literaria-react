@@ -12,7 +12,10 @@ Este repositorio contiene el frontend de "Alquimia Literaria", una plataforma di
 
 - **Node.js:** v18.0.0 o superior
 - **React:** v18.2.0
-- **Vite:** v4.0.0
+- **Vite:** v4.0.0 o superior
+- **React Router DOM:** v6.x
+- **Tailwind CSS:** v3.x
+- **SweetAlert2:** v11.x
 - **npm:** v9.0.0 o superior
 
 ---
@@ -48,7 +51,7 @@ Sigue estos pasos para ejecutar el proyecto localmente:
 
 | Nombre                  | Usuario GitHub     |
 |-------------------------|--------------------|
-| Santiago Zapata Villada | @SantiagoZVcesde   |
+| Santiago Zapata Villada | @[SantiagoZVcesde]   |
 | Santiago Sanchez Rojas  | @[piolin666satan]  |
 | [Nombre 3]              | @[usuario]         |
 | [Nombre 4]              | @[usuario]         |
@@ -61,11 +64,21 @@ A continuación se detalla la organización de los directorios y archivos princi
 
 ```text
 src/
-├── assets/          # Recursos estáticos (imágenes, logos, estilos globales)
-├── components/      # Componentes UI reutilizables (Navbar, Footer)
-├── helpers/         # Funciones de utilidad (validaciones, formateo)
-├── pages/           # Vistas de alto nivel (Home, Login)
-├── services/        # Comunicación con backend (vacío por ahora)
-├── router/          # Configuración de navegación (vacío por ahora)
-├── App.jsx          # Orquestador principal
-└── main.jsx         # Punto de entrada de React
+├── assets/           # Recursos estáticos (imágenes, logos de portadas)
+├── components/       # Componentes UI reutilizables e interactivos
+│   ├── HeaderBarraNavegacion.jsx  # Barra superior con lógica de sesión
+│   └── Footer.jsx                 # Pie de página ejecutivo
+├── helpers/          # Funciones de utilidad y notificaciones
+│   └── alerts.js     # Centralización de alertas visuales (SweetAlert2)
+├── pages/            # Vistas de alto nivel y formularios
+│   ├── AdminDashboard.jsx  # Panel administrativo de la librería
+│   ├── Cart.jsx            # Panel lateral del carrito de compras
+│   ├── ForgotPassword.jsx  # Módulo de restablecimiento por PUT
+│   ├── Home.jsx            # Página de bienvenida principal
+│   ├── Library.jsx         # Catálogo dinámico conectado al backend
+│   ├── Login.jsx           # Validación de accesos y credenciales
+│   └── Register.jsx        # Captura y mapeo de nuevos usuarios
+├── services/         # Gestión de URLs y configuración de la API
+│   └── api.js        # Objeto centralizado de endpoints del sistema
+├── App.jsx           # Orquestador y layout principal de la SPA
+└── main.jsx          # Punto de entrada de React en el DOM

@@ -8,32 +8,37 @@ import "../pages/PagesCss/Register.css";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]); 
-  const [userFound, setUserFound] = useState(null); 
+  const [loading, setLoading] = useState(false);
+
+  // Guardamos el objeto completo del usuario cuando lo encontremos
+  const [activeUser, setActiveUser] = useState(null); 
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  
-  const credentialsBase64 = btoa("admin:admin123");
 
-  // --- 1. CARGAR USUARIOS APENAS CARGUE LA PÁGINA ---
+  // Credenciales maestras solo para el GET inicial
+  const adminCredentialsBase64 = btoa("admin:admin123");
+
+  // --- 1. CARGAR TODOS LOS USUARIOS USANDO LA CREDENCIAL MAESTRA DE SPRING SECURITY ---
   useEffect(() => {
-    const fetchUsers = () => {
-      fetch(end_points.users, {
-        method: "GET",
-        headers: {
-          "Authorization": `Basic ${credentialsBase64}`,
-          "Content-Type": "application/json"
+    fetch(end_points.users, {
+      method: "GET",
+      headers: {
+        "Authorization": `Basic ${adminCredentialsBase64}`,
+        "Content-Type": "application/json"
+      }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setUsers(data);
+        } else {
+          console.error("La API no devolvió un array:", data);
         }
       })
-        .then((response) => response.json())
-        .then((data) => setUsers(data))
-        .catch((error) => console.log("Error cargando usuarios:", error));
-    };
+      .catch((error) => console.log("Error cargando usuarios:", error));
+  }, [adminCredentialsBase64]);
 
-    fetchUsers();
-  }, [credentialsBase64]);
-
-  // --- 2. PASO 1: VERIFICAR SI EL CORREO EXISTE ---
+  // --- 2. PASO 1: VERIFICAR EL CORREO EN LA LISTA ---
   const handleVerifyEmail = (e) => {
     e.preventDefault();
 
@@ -43,21 +48,20 @@ const ForgotPassword = () => {
 
     setLoading(true);
 
-    // Buscamos en el estado local de usuarios
-    const found = users.find((u) => u.email.toLowerCase() === email.trim().toLowerCase());
+    const match = users.find((u) => u.email && u.email.toLowerCase() === email.trim().toLowerCase());
 
     setTimeout(() => {
       setLoading(false);
-      if (found) {
-        setUserFound(found); // Guardamos el usuario encontrado para usar su ID en el PUT
-        Swal.fire("Usuario Verificado", "Correo encontrado. Por favor ingresa tu nueva contraseña.", "success");
+      if (match) {
+        setActiveUser(match); 
+        Swal.fire("Usuario Verificado", "Correo encontrado. Ahora ingresa tu nueva contraseña.", "success");
       } else {
         Swal.fire("Error", "El correo electrónico no coincide con ninguna cuenta activa.", "error");
       }
-    }, 600); // Pequeña simulación de carga para mejorar la UX
+    }, 500);
   };
 
-  // --- 3. PASO 2: ACTUALIZAR LA CONTRASEÑA (PUT) ---
+  // --- 3. PASO 2: MANDAR EL PUT ENCRIPTANDO LAS CREDENCIALES DEL USUARIO PROPIO ---
   const handleResetPassword = (e) => {
     e.preventDefault();
 
@@ -71,22 +75,54 @@ const ForgotPassword = () => {
 
     setLoading(true);
 
-    // Creamos el clon del usuario manteniendo sus datos originales pero cambiando la password
-    const updatedUser = {
-      ...userFound,
-      password: newPassword
+    // Clonamos los datos actuales
+    let updatedUser = {
+      id: activeUser.id,
+      nombre: activeUser.nombre,
+      apellido: activeUser.apellido,
+      tipoIdentidad: activeUser.tipoIdentidad,
+      numeroIdentidad: String(activeUser.numeroIdentidad),
+      email: activeUser.email,
+      direccion: activeUser.direccion || "Calle 123 #45-67",
+      telefono: activeUser.telefono || "555-1234",
+      password: newPassword // Aquí va el cambio
     };
 
-    fetch(`${end_points.users}/${userFound.id}`, {
+    /**
+     * ¡OJO AQUÍ MANO!
+     * Para el PUT generamos un token Basic Auth usando el email del usuario 
+     * y su contraseña ACTUAL (la vieja que está en la BD, activeUser.password).
+     * Así Spring Security valida que es él mismo quien hace la petición.
+     */
+    const userCredentialsBase64 = btoa(`${activeUser.email}:${activeUser.password}`);
+
+    fetch(end_points.users + "/" + activeUser.id, {
       method: "PUT",
       headers: {
-        "Authorization": `Basic ${credentialsBase64}`,
+        "Authorization": `Basic ${userCredentialsBase64}`, // Mandamos el token de su propia cuenta vieja
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedUser),
     })
       .then((res) => {
-        if (!res.ok) throw new Error();
+        if (!res.ok) {
+          // Si falla con las del usuario, intentamos como último recurso con las del admin maestro
+          return fetch(end_points.users + "/" + activeUser.id, {
+            method: "PUT",
+            headers: {
+              "Authorization": `Basic ${adminCredentialsBase64}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedUser),
+          }).then(resAdmin => {
+            if (!resAdmin.ok) throw new Error("Bloqueado por Spring Security en ambos intentos");
+            return resAdmin.json();
+          });
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Contraseña cambiada con éxito:", data);
         setLoading(false);
         return redirectAlert(
           "¡Contraseña Actualizada!",
@@ -98,14 +134,13 @@ const ForgotPassword = () => {
       .catch((err) => {
         setLoading(false);
         console.error(err);
-        Swal.fire("Error de Servidor", "No se pudo actualizar la contraseña en el backend.", "error");
+        Swal.fire("Error de Autenticación", "Spring Security rechazó la actualización. Revisa la consola o los permisos del backend.", "error");
       });
   };
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#1a0f0a] to-[#0A1045] py-10 overflow-hidden">
       
-      {/* BOTÓN VOLVER AL LOGIN */}
       <Link 
         to="/Login" 
         className="absolute top-6 left-6 z-20 text-white/50 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold tracking-widest"
@@ -115,15 +150,14 @@ const ForgotPassword = () => {
 
       <div className="relative z-10 w-full max-w-md p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl mx-4">
         
-        {/* INTERFAZ CONDICIONAL: SI NO HA ENCONTRADO USUARIO, PIDE EL CORREO */}
-        {!userFound ? (
+        {!activeUser ? (
           <>
             <div className="flex flex-col items-center mb-6">
               <h2 className="text-3xl font-bold text-white tracking-tight text-center">
                 ¿Olvidaste tu contraseña?
               </h2>
               <p className="text-blue-200/60 text-sm mt-2 text-center">
-                Ingresa tu correo electrónico registrado para verificar tu cuenta y cambiar tu credencial.
+                Ingresa tu correo electrónico registrado para verificar tu cuenta.
               </p>
             </div>
 
@@ -160,18 +194,27 @@ const ForgotPassword = () => {
             </form>
           </>
         ) : (
-          /* INTERFAZ CONDICIONAL: SI YA COMPROBÓ EL CORREO, PIDE LAS NUEVAS CLAVES */
           <>
             <div className="flex flex-col items-center mb-6">
               <h2 className="text-3xl font-bold text-white tracking-tight text-center">
                 Restablecer Credencial
               </h2>
               <p className="text-amber-300 text-xs mt-2 text-center font-semibold bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-lg">
-                Cuenta válida: {userFound.email}
+                Usuario verificado: {activeUser.nombre} {activeUser.apellido}
               </p>
             </div>
 
             <form className="space-y-5" onSubmit={handleResetPassword}>
+              <div>
+                <label className="text-slate-400 text-xs ml-1 mb-1 block">ID de Usuario</label>
+                <input
+                  type="text"
+                  value={activeUser.id}
+                  disabled
+                  className="w-full bg-slate-800/50 border border-white/10 rounded-lg px-4 py-2 text-slate-400 cursor-not-allowed outline-none text-sm"
+                />
+              </div>
+
               <div>
                 <label className="text-blue-200/80 text-xs ml-1 mb-1 block">
                   Nueva Contraseña
