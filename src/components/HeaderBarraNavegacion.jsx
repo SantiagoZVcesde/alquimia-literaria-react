@@ -1,14 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import Swal from "sweetalert2";
 
-function HeaderBarraNavegacion({ isLoggedIn }) {
-  const [search, setSearch] = useState("");
+// RECIBIMOS las props globales para controlar la búsqueda de la librería
+function HeaderBarraNavegacion({ isLoggedIn, searchTerm, setSearchTerm }) {
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log("Buscar:", search);
+    console.log("Buscar ejecutado para:", searchTerm);
   };
 
   // Función para borrar la sesión y devolverlo al Login
@@ -36,7 +35,7 @@ function HeaderBarraNavegacion({ isLoggedIn }) {
         </h1>
       </Link>
 
-      {/* Barra de búsqueda */}
+      {/* Barra de búsqueda conectada con el estado de Library */}
       <form 
         onSubmit={handleSearch}
         className="flex items-center bg-[#1a1a2e] rounded-md overflow-hidden border border-[#4b2c85] my-4 md:my-0 focus-within:border-[#1e40ff] transition-all"
@@ -44,11 +43,16 @@ function HeaderBarraNavegacion({ isLoggedIn }) {
         <input
           type="text"
           placeholder="Buscar libros..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          // Usamos la prop que viene de la librería para leer el valor
+          value={searchTerm || ""}
+          // Cada que cambie, actualizamos el estado de la librería en tiempo real
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="bg-transparent px-4 py-2 outline-none text-[#fffef0] w-64 placeholder:text-gray-500"
         />
-        <button className="bg-[#1e40ff] px-6 py-2 text-white font-semibold hover:bg-[#ff7700] transition-colors">
+        <button 
+          type="submit"
+          className="bg-[#1e40ff] px-6 py-2 text-white font-semibold hover:bg-[#ff7700] transition-colors"
+        >
           Buscar
         </button>
       </form>
