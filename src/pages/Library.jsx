@@ -24,24 +24,24 @@ const CATEGORIAS_LISTA = [
 // Mapeo rápido de portadas reales para solucionar los enlaces rotos de la imagen image_ae2998.png
 const PORTADAS_PREDEFINIDAS = {
   // --- CATEGORÍA 1: FICCIÓN ---
-  "el aleph": "https://m.media-amazon.com/images/I/81C6N9hB95L._SL1500_.jpg",
-  "cien años de soledad": "https://m.media-amazon.com/images/I/81Wb0SgO9nL._SL1500_.jpg",
-  "meridiano de sangre": "https://m.media-amazon.com/images/I/81A7b9zL7FL._SL1500_.jpg",
-  "el gran gatsby": "https://m.media-amazon.com/images/I/8106-9ySg6L._SL1500_.jpg",
-  "crónica de una muerte anunciada": "https://m.media-amazon.com/images/I/71p-Dco6P9L._SL1500_.jpg",
-  "pedro páramo": "https://m.media-amazon.com/images/I/71E8b-3Zl4L._SL1500_.jpg",
+  "el aleph": "https://www.buscalibre.com.co/libro-el-aleph-el-libro-de-bolsillo-bibliotecas-de-autor-biblioteca-borges/9788420633114/p/978264",
+  "cien años de soledad": "https://www.buscalibre.com.co/libro-cien-anos-de-soledad/9788497592208/p/2713624",
+  "meridiano de sangre": "https://www.penguinlibros.com/co/tematicas/19927-ebook-meridiano-de-sangre-9788439724902?srsltid=AfmBOor3BPBRJ-CJJAOgJ3j8jksoVrAQbSR2JCZo8YW2aIkEz87QbQPw",
+  "el gran gatsby": "https://www.planetadelibros.com.co/libro-el-gran-gatsby/409070",
+  "crónica de una muerte anunciada": "https://www.planetadelibros.com.co/libro-crónica-de-una-muerte-anunciada/409071",
+  "pedro páramo": "https://www.planetadelibros.com.co/libro-pedro-páramo/409072",
 
   // --- CATEGORÍA 2: CIENCIA FICCIÓN ---
-  "1984": "https://m.media-amazon.com/images/I/71kxa1-0mfL._SL1500_.jpg",
-  "un mundo feliz": "https://m.media-amazon.com/images/I/814L6kMcZtL._SL1500_.jpg",
-  "fahrenheit 451": "https://m.media-amazon.com/images/I/61z7F7jghoL._SL1500_.jpg",
-  "dune": "https://m.media-amazon.com/images/I/81ym3vS+M4L._SL1500_.jpg",
+  "1984": "https://www.buscalibre.com.co/libro-1984/9789875669284/p/34494617",
+  "un mundo feliz": "https://www.buscalibre.com.co/libro-un-mundo-feliz/9788497592208/p/2713624",
+  "fahrenheit 451": "https://www.buscalibre.com.co/libro-fahrenheit-451/9788497592208/p/2713624",
+  "dune": "https://www.buscalibre.com.co/libro-dune/9788497592208/p/2713624",
 
   // --- CATEGORÍA 3: TERROR ---
-  "drácula": "https://images.penguinrandomhouse.com/cover/9780141439577",
-  "el resplandor": "https://m.media-amazon.com/images/I/91t6nIasIEL._SL1500_.jpg",
-  "frankenstein": "https://images.penguinrandomhouse.com/cover/9780141439478",
-  "it": "https://m.media-amazon.com/images/I/719F7YStYHL._SL1500_.jpg",
+  "drácula": "https://www.buscalibre.com.co/libro-dracula/9788415618836/p/50197980",
+  "el resplandor": "https://www.buscalibre.com.co/libro-el-resplandor/9788439724902/p/50197980",
+  "frankenstein": "https://www.buscalibre.com.co/libro-frankenstein/9788439724902/p/50197980",
+  "it": "https://www.buscalibre.com.co/libro-it/9788439724902/p/50197980",
 
   // --- CATEGORÍA 4: COMEDIA ---
   "sin noticias de gurb": "https://m.media-amazon.com/images/I/71u969HwFpL._SL1500_.jpg",

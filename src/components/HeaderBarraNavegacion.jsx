@@ -5,9 +5,38 @@ import Swal from "sweetalert2";
 function HeaderBarraNavegacion({ isLoggedIn, searchTerm, setSearchTerm }) {
   const navigate = useNavigate();
 
+  // Evaluamos de forma segura si hay sesión en el localStorage
+  const tieneSesion = isLoggedIn ?? !!localStorage.getItem("user_session");
+
   const handleSearch = (e) => {
     e.preventDefault();
     console.log("Buscar ejecutado para:", searchTerm);
+  };
+
+  // Función inteligente para el botón de Librería
+  const handleLibraryClick = (e) => {
+    e.preventDefault(); // Frenamos el salto automático
+    
+    if (tieneSesion) {
+      // Si está logueado, pasa derecho a la librería
+      navigate("/Library");
+    } else {
+      // Si no ha iniciado sesión, le mandamos el quieto con Swal nítido
+      Swal.fire({
+        title: "¡Acceso Restringido!",
+        text: "Necesitas iniciar sesión para poder ingresar a la Alquimia Literaria.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Ir al Login",
+        cancelButtonText: "Seguir mirando",
+        confirmButtonColor: "#1e40ff",
+        cancelButtonColor: "#374151"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/Login");
+        }
+      });
+    }
   };
 
   // Función para borrar la sesión y devolverlo al Login
@@ -43,10 +72,8 @@ function HeaderBarraNavegacion({ isLoggedIn, searchTerm, setSearchTerm }) {
         <input
           type="text"
           placeholder="Buscar libros..."
-          // Usamos la prop que viene de la librería para leer el valor
           value={searchTerm || ""}
-          // Cada que cambie, actualizamos el estado de la librería en tiempo real
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => setSearchTerm && setSearchTerm(e.target.value)}
           className="bg-transparent px-4 py-2 outline-none text-[#fffef0] w-64 placeholder:text-gray-500"
         />
         <button 
@@ -59,11 +86,16 @@ function HeaderBarraNavegacion({ isLoggedIn, searchTerm, setSearchTerm }) {
 
       {/* Links Dinámicos */}
       <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8">
-        <Link to="/Library" className="hover:text-[#ff3399] transition-colors font-medium">
-          Librería
-        </Link>
         
-        {!isLoggedIn ? (
+        {/* CAMBIO AQUÍ: Ahora el botón valida la seguridad antes de saltar */}
+        <button 
+          onClick={handleLibraryClick}
+          className="hover:text-[#ff3399] transition-colors font-medium bg-transparent border-none cursor-pointer"
+        >
+          Librería
+        </button>
+        
+        {!tieneSesion ? (
           /* SI NO ESTÁ LOGUEADO: Muestra ingresar y registro */
           <>
             <Link to="/Login" className="hover:text-[#ff7700] transition-colors font-medium">
