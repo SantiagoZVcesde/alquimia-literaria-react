@@ -24,56 +24,56 @@ const CATEGORIAS_LISTA = [
 // Mapeo rápido de portadas reales para solucionar los enlaces rotos de la imagen image_ae2998.png
 const PORTADAS_PREDEFINIDAS = {
   // --- CATEGORÍA 1: FICCIÓN ---
-  "el aleph": "https://www.buscalibre.com.co/libro-el-aleph-el-libro-de-bolsillo-bibliotecas-de-autor-biblioteca-borges/9788420633114/p/978264",
-  "cien años de soledad": "https://www.buscalibre.com.co/libro-cien-anos-de-soledad/9788497592208/p/2713624",
-  "meridiano de sangre": "https://www.penguinlibros.com/co/tematicas/19927-ebook-meridiano-de-sangre-9788439724902?srsltid=AfmBOor3BPBRJ-CJJAOgJ3j8jksoVrAQbSR2JCZo8YW2aIkEz87QbQPw",
-  "el gran gatsby": "https://www.planetadelibros.com.co/libro-el-gran-gatsby/409070",
-  "crónica de una muerte anunciada": "https://www.planetadelibros.com.co/libro-crónica-de-una-muerte-anunciada/409071",
-  "pedro páramo": "https://www.planetadelibros.com.co/libro-pedro-páramo/409072",
+  "el aleph": "https://images.cdn3.buscalibre.com/fit-in/360x360/ab/b1/abb1e18f6c89a6dd0f021a63514759a9.jpg",
+  "cien años de soledad": "https://images.cdn3.buscalibre.com/fit-in/360x360/61/8d/618d227e8967274cd9589a549adff52d.jpg",
+  "meridiano de sangre": "https://images.cdn3.buscalibre.com/fit-in/360x360/77/89/778972fb44bf8d43d43971402050f1b6.jpg",
+  "el gran gatsby": "https://upload.wikimedia.org/wikipedia/commons/7/7a/The_Great_Gatsby_Cover_1925_Retouched.jpg",
+  "crónica de una muerte anunciada": "https://www.bibliotecanacional.gov.co/es-co/colecciones/biblioteca-digital/gaboteca/Imagenes/DOC092515-09252015123109_P%C3%A1gina_5.jpg",
+  "pedro páramo": "https://images.cdn1.buscalibre.com/fit-in/360x360/1a/d7/1ad769b304eb759a61880340921bc82d.jpg",
 
   // --- CATEGORÍA 2: CIENCIA FICCIÓN ---
-  "1984": "https://www.buscalibre.com.co/libro-1984/9789875669284/p/34494617",
-  "un mundo feliz": "https://www.buscalibre.com.co/libro-un-mundo-feliz/9788497592208/p/2713624",
-  "fahrenheit 451": "https://www.buscalibre.com.co/libro-fahrenheit-451/9788497592208/p/2713624",
-  "dune": "https://www.buscalibre.com.co/libro-dune/9788497592208/p/2713624",
+  "1984": "https://images.cdn1.buscalibre.com/fit-in/360x360/b0/39/b039af065268818b7bd3b0e016f8db65.jpg",
+  "un mundo feliz": "https://images.cdn3.buscalibre.com/fit-in/360x360/7b/ff/7bff931f0d397d6d3138cd6f398e1305.jpg",
+  "fahrenheit 451": "https://images.cdn2.buscalibre.com/fit-in/360x360/9e/39/9e3949c949c4abc1f69e2cce613532b1.jpg",
+  "dune": "https://images.cdn3.buscalibre.com/fit-in/360x360/f4/65/f465a84545d7a6f4109ae2922be1befa.jpg",
 
   // --- CATEGORÍA 3: TERROR ---
-  "drácula": "https://www.buscalibre.com.co/libro-dracula/9788415618836/p/50197980",
-  "el resplandor": "https://www.buscalibre.com.co/libro-el-resplandor/9788439724902/p/50197980",
-  "frankenstein": "https://www.buscalibre.com.co/libro-frankenstein/9788439724902/p/50197980",
-  "it": "https://www.buscalibre.com.co/libro-it/9788439724902/p/50197980",
+  "drácula": "https://images.cdn3.buscalibre.com/fit-in/360x360/76/dc/76dc4380329a0f6f3d38ae712e5407ac.jpg",
+  "el resplandor": "https://images.cdn3.buscalibre.com/fit-in/360x360/ca/73/ca7388689e9fdfe664d56c6ff39d439b.jpg",
+  "frankenstein": "https://images.cdn1.buscalibre.com/fit-in/360x360/15/54/1554d01d226679a6e8402fad007b31a6.jpg",
+  "it": "https://m.media-amazon.com/images/I/41utxPy1SkL._SY445_SX342_ML2_.jpg",
 
   // --- CATEGORÍA 4: COMEDIA ---
-  "sin noticias de gurb": "https://m.media-amazon.com/images/I/71u969HwFpL._SL1500_.jpg",
-  "la importancia de llamarse ernesto": "https://m.media-amazon.com/images/I/71yLzSOnVWL._SL1500_.jpg",
-  "guía del autoestopista galáctico": "https://m.media-amazon.com/images/I/81XmCFr7LwL._SL1500_.jpg",
+  "sin noticias de gurb": "https://pdlibroscol.cdnstatics2.com/usuaris/libros/thumbs/7ac8b94a-48a9-4c4c-bb63-453cf9ce7ba8/d_1200_1200/156797_portada_sin-noticias-de-gurb_eduardo-mendoza_201612011800.webp",
+  "la importancia de llamarse ernesto": "https://m.media-amazon.com/images/I/41OJGgCNTOL._SY445_SX342_FMwebp_.jpg",
+  "guía del autoestopista galáctico": "https://images.cdn1.buscalibre.com/fit-in/360x360/0a/92/0a92b86262098e5f21ee84c81bba6572.jpg",
+  "el principito": "https://images.cdn1.buscalibre.com/fit-in/360x360/ea/1f/ea1fc691874fa49ce341d876a981e2c.jpg",
 
-  // --- CATEGORÍA 5: ROMANCE ---
-  "orgullo y prejuicio": "https://m.media-amazon.com/images/I/81wL0-r0IOL._SL1500_.jpg",
-  "bajo la misma estrella": "https://m.media-amazon.com/images/I/817vK4rZlhL._SL1500_.jpg",
-  "yo antes de ti": "https://m.media-amazon.com/images/I/81bS8eC8xGL._SL1500_.jpg",
-  "cumbres borrascosas": "https://m.media-amazon.com/images/I/818Z47v36FL._SL1500_.jpg",
+// --- CATEGORÍA 5: ROMANCE ---
+  "orgullo y prejuicio": "https://images.cdn3.buscalibre.com/fit-in/360x360/49/6c/496cc2d26070c4f19d7f8e93a09274ac.jpg",
+  "bajo la misma estrella": "https://images.cdn3.buscalibre.com/fit-in/360x360/15/f4/15f40f6f57bebd15941e38932203f904.jpg",
+  "yo antes de ti": "https://images.cdn2.buscalibre.com/fit-in/360x360/9d/b3/9db3c74116f5f8c7e2841438c72ef1f6.jpg",
+  "cumbres borrascosas": "https://images.cdn1.buscalibre.com/fit-in/360x360/85/16/8516d825f44f192528d673955df2bc99.jpg",
 
   // --- CATEGORÍA 6: FANTASÍA ---
-  "el señor de los anillos": "https://m.media-amazon.com/images/I/81Z0Yn2H+AL._SL1500_.jpg",
+  "el señor de los anillos": "https://images.cdn3.buscalibre.com/fit-in/360x360/db/09/db099c3235b90492cd39b8c59f32a7b5.jpg",
   "harry potter y la piedra filosofal": "https://m.media-amazon.com/images/I/81YOuOGFCJL._SL1500_.jpg",
-  "el hobbit": "https://m.media-amazon.com/images/I/710vvXG96vL._SL1500_.jpg",
-  "el nombre del viento": "https://m.media-amazon.com/images/I/918u8FvInSL._SL1500_.jpg",
+  "el hobbit": "https://images.cdn3.buscalibre.com/fit-in/360x360/56/cf/56cfab9ef05de6b1f648fb388acfde61.jpg",
+  "el nombre del viento": "https://images.cdn3.buscalibre.com/fit-in/360x360/a7/90/a790dff70defe5c61b66fd73716b6e30.jpg",
 
   // --- CATEGORÍA 7: DRAMA ---
-  "la casa de bernarda alba": "https://m.media-amazon.com/images/I/81L8E7XpYvL._SL1500_.jpg",
-  "crimen y castigo": "https://m.media-amazon.com/images/I/716vX0y9SXL._SL1500_.jpg",
-  "el retrato de dorian gray": "https://m.media-amazon.com/images/I/8186P+oV-vL._SL1500_.jpg",
-  "la metamorfosis": "https://m.media-amazon.com/images/I/718tCInXvML._SL1500_.jpg",
+  "la casa de bernarda alba": "https://images.cdn1.buscalibre.com/fit-in/360x360/b3/57/b3571946b92e30494dbfb8a5d70d7e9b.jpg",
+  "crimen y castigo": "https://ima1.jpg",
+  "el retrato de dorian gray": "https://images.cdn2.buscalibre.com/fit-in/360x360/91/18/9118645bef1e527a3e1f14e7187ac89e.jpg",
+  "la metamorfosis": "https://images.cdn1.buscalibre.com/fit-in/360x360/fb/6e/fb6e8ba8d86c40b01299f17e294ef509.jpg",
 
   // --- CATEGORÍA 8: FILOSOFÍA ---
-  "meditaciones": "https://m.media-amazon.com/images/I/71pX7K6GZYL._SL1500_.jpg",
-  "así habló zaratustra": "https://m.media-amazon.com/images/I/81-N5bZ68yL._SL1500_.jpg",
-  "el mito de sísifo": "https://m.media-amazon.com/images/I/71eS1W6XpNL._SL1500_.jpg",
-  "el anticristo": "https://m.media-amazon.com/images/I/71u96V2y64L._SL1500_.jpg"
+  "meditaciones": "https://pdlibroscol.cdnstatics2.com/usuaris/libros/thumbs/9e089630-5263-4d0c-9abd-4907442b41ad/d_1200_1200/429925_portada_meditaciones_marco-aurelio_202604200229.webp",
+  "así habló zaratustra": "https://images.cdn3.buscalibre.com/fit-in/360x360/00/f2/00f24a15ea0912393f9c8fab7d5d81ac.jpg",
+  "el mito de sísifo": "https://images.cdn2.buscalibre.com/fit-in/360x360/6b/b5/6bb542cf8655b23f2303124ea895ab7d.jpg",
+  "el anticristo": "https://images.cdn1.buscalibre.com/fit-in/360x360/3d/88/3d8841782acc38dcf6bae7b4ae3639f6.jpg"
 };
 
-// Generador de portadas de respaldo elegantes en SVG si el título no coincide
 const obtenerImagenLibro = (libro) => {
   if (libro.imagenUrl) return libro.imagenUrl;
   
@@ -128,7 +128,6 @@ export const Library = () => {
       });
   }, [credentialsBase64]);
 
-  // Cada que se busque o cambie la categoría, reiniciamos a la página 1
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, categoriaSeleccionada]);
